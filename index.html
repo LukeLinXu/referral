@@ -16,6 +16,10 @@
             font-size: 12px;
             display: none;
             z-index: 1000;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
         }
         .referral-card {
             position: relative;
@@ -41,6 +45,30 @@
         html {
             scroll-behavior: smooth;
         }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .card-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            display: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .card-logo:hover {
+            transform: scale(1.1);
+        }
+        .card-logo.loaded {
+            display: block;
+        }
+        .card-title {
+            margin: 0;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -48,8 +76,11 @@
         <h1>My Referral Codes</h1>
         <div class="referral-grid">
             <div class="referral-card" id="gcr" data-url="https://lukelinxu.github.io/referral/#gcr">
-                <div class="tooltip">Long press to copy direct link</div>
-                <h2>Great Canadian Rebates</h2>
+                <div class="tooltip">Click logo to copy section link</div>
+                <div class="card-header">
+                    <img src="https://www.greatcanadianrebates.ca/images/logo.png" alt="GCR Logo" class="card-logo" onload="this.classList.add('loaded')" onerror="this.style.display='none'" onclick="copySectionLink(this)">
+                    <h2 class="card-title">Great Canadian Rebates</h2>
+                </div>
                 <div class="referral-content">
                     <a href="https://www.greatcanadianrebates.ca/register/160610/" target="_blank" class="referral-link">
                         <i class="fas fa-external-link-alt"></i> Visit GCR
@@ -64,8 +95,11 @@
             </div>
 
             <div class="referral-card" id="rakuten" data-url="https://lukelinxu.github.io/referral/#rakuten">
-                <div class="tooltip">Long press to copy direct link</div>
-                <h2>Rakuten</h2>
+                <div class="tooltip">Click logo to copy section link</div>
+                <div class="card-header">
+                    <img src="https://www.rakuten.ca/assets/images/rakuten-logo.svg" alt="Rakuten Logo" class="card-logo" onload="this.classList.add('loaded')" onerror="this.style.display='none'" onclick="copySectionLink(this)">
+                    <h2 class="card-title">Rakuten</h2>
+                </div>
                 <div class="referral-content">
                     <a href="https://www.rakuten.ca/r/lukelinxu?src=Link" target="_blank" class="referral-link">
                         <i class="fas fa-external-link-alt"></i> Visit Rakuten
@@ -80,8 +114,11 @@
             </div>
 
             <div class="referral-card" id="wise" data-url="https://lukelinxu.github.io/referral/#wise">
-                <div class="tooltip">Long press to copy direct link</div>
-                <h2>Wise</h2>
+                <div class="tooltip">Click logo to copy section link</div>
+                <div class="card-header">
+                    <img src="https://wise.com/public-resources/assets/logos/wise/logo.svg" alt="Wise Logo" class="card-logo" onload="this.classList.add('loaded')" onerror="this.style.display='none'" onclick="copySectionLink(this)">
+                    <h2 class="card-title">Wise</h2>
+                </div>
                 <div class="referral-content">
                     <a href="https://wise.com/invite/ihpc/xul20" target="_blank" class="referral-link">
                         <i class="fas fa-external-link-alt"></i> Visit Wise
@@ -96,8 +133,11 @@
             </div>
 
             <div class="referral-card" id="wealthsimple" data-url="https://lukelinxu.github.io/referral/#wealthsimple">
-                <div class="tooltip">Long press to copy direct link</div>
-                <h2>Wealthsimple</h2>
+                <div class="tooltip">Click logo to copy section link</div>
+                <div class="card-header">
+                    <img src="https://www.wealthsimple.com/assets/logo.svg" alt="Wealthsimple Logo" class="card-logo" onload="this.classList.add('loaded')" onerror="this.style.display='none'" onclick="copySectionLink(this)">
+                    <h2 class="card-title">Wealthsimple</h2>
+                </div>
                 <div class="referral-content">
                     <a href="https://wealthsimple.com/invite/BJJOGG" target="_blank" class="referral-link">
                         <i class="fas fa-external-link-alt"></i> Visit Wealthsimple
@@ -112,8 +152,11 @@
             </div>
 
             <div class="referral-card" id="ib" data-url="https://lukelinxu.github.io/referral/#ib">
-                <div class="tooltip">Long press to copy direct link</div>
-                <h2>Interactive Brokers</h2>
+                <div class="tooltip">Click logo to copy section link</div>
+                <div class="card-header">
+                    <img src="https://www.interactivebrokers.com/images/web/ib-logo.svg" alt="IB Logo" class="card-logo" onload="this.classList.add('loaded')" onerror="this.style.display='none'" onclick="copySectionLink(this)">
+                    <h2 class="card-title">Interactive Brokers</h2>
+                </div>
                 <div class="referral-content">
                     <a href="https://ibkr.com/referral/xu756" target="_blank" class="referral-link">
                         <i class="fas fa-external-link-alt"></i> Visit Interactive Brokers
@@ -128,8 +171,11 @@
             </div>
 
             <div class="referral-card" id="fizz" data-url="https://lukelinxu.github.io/referral/#fizz">
-                <div class="tooltip">Long press to copy direct link</div>
-                <h2>Fizz</h2>
+                <div class="tooltip">Click logo to copy section link</div>
+                <div class="card-header">
+                    <img src="https://fizz.ca/assets/images/logo.svg" alt="Fizz Logo" class="card-logo" onload="this.classList.add('loaded')" onerror="this.style.display='none'" onclick="copySectionLink(this)">
+                    <h2 class="card-title">Fizz</h2>
+                </div>
                 <div class="referral-content">
                     <a href="https://fizz.ca" target="_blank" class="referral-link">
                         <i class="fas fa-external-link-alt"></i> Visit Fizz (Use refer code later)
@@ -144,8 +190,11 @@
             </div>
 
             <div class="referral-card" id="lyft" data-url="https://lukelinxu.github.io/referral/#lyft">
-                <div class="tooltip">Long press to copy direct link</div>
-                <h2>Lyft</h2>
+                <div class="tooltip">Click logo to copy section link</div>
+                <div class="card-header">
+                    <img src="https://www.lyft.com/business/static/logo-lyft.5c0c5b1.svg" alt="Lyft Logo" class="card-logo" onload="this.classList.add('loaded')" onerror="this.style.display='none'" onclick="copySectionLink(this)">
+                    <h2 class="card-title">Lyft</h2>
+                </div>
                 <div class="referral-content">
                     <a href="https://www.lyft.com/i/LUKE809219?utm_medium=2pi_iacc" target="_blank" class="referral-link">
                         <i class="fas fa-external-link-alt"></i> Visit Lyft
@@ -160,8 +209,11 @@
             </div>
 
             <div class="referral-card" id="public-mobile" data-url="https://lukelinxu.github.io/referral/#public-mobile">
-                <div class="tooltip">Long press to copy direct link</div>
-                <h2>Public Mobile</h2>
+                <div class="tooltip">Click logo to copy section link</div>
+                <div class="card-header">
+                    <img src="https://www.publicmobile.ca/content/dam/public-mobile/images/logo.svg" alt="Public Mobile Logo" class="card-logo" onload="this.classList.add('loaded')" onerror="this.style.display='none'" onclick="copySectionLink(this)">
+                    <h2 class="card-title">Public Mobile</h2>
+                </div>
                 <div class="referral-content">
                     <a href="https://publicmobile.ca/en/on/plans?referral=OKT6N8" target="_blank" class="referral-link">
                         <i class="fas fa-external-link-alt"></i> Visit Public Mobile
@@ -180,43 +232,6 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Handle long press to copy URL
-            const cards = document.querySelectorAll('.referral-card');
-            let pressTimer;
-            const pressDuration = 500; // milliseconds
-
-            cards.forEach(card => {
-                const tooltip = card.querySelector('.tooltip');
-                
-                card.addEventListener('mousedown', function(e) {
-                    if (e.button === 2) { // Right click
-                        pressTimer = setTimeout(() => {
-                            const url = this.getAttribute('data-url');
-                            navigator.clipboard.writeText(url).then(() => {
-                                tooltip.textContent = 'Link copied!';
-                                tooltip.style.display = 'block';
-                                setTimeout(() => {
-                                    tooltip.style.display = 'none';
-                                    tooltip.textContent = 'Long press to copy direct link';
-                                }, 2000);
-                            });
-                        }, pressDuration);
-                    }
-                });
-
-                card.addEventListener('mouseup', function() {
-                    clearTimeout(pressTimer);
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    clearTimeout(pressTimer);
-                });
-
-                card.addEventListener('contextmenu', function(e) {
-                    e.preventDefault();
-                });
-            });
-
             // Handle URL hash targeting
             function highlightTargetCard() {
                 const hash = window.location.hash.substring(1);
@@ -224,7 +239,7 @@
                     const targetCard = document.getElementById(hash);
                     if (targetCard) {
                         // Remove highlight from all cards
-                        cards.forEach(card => card.classList.remove('highlight'));
+                        document.querySelectorAll('.referral-card').forEach(card => card.classList.remove('highlight'));
                         
                         // Add highlight to target card
                         targetCard.classList.add('highlight');
@@ -243,6 +258,21 @@
             // Check for hash changes
             window.addEventListener('hashchange', highlightTargetCard);
         });
+
+        function copySectionLink(img) {
+            const card = img.closest('.referral-card');
+            const url = card.getAttribute('data-url');
+            const tooltip = card.querySelector('.tooltip');
+            
+            navigator.clipboard.writeText(url).then(() => {
+                tooltip.textContent = 'Link copied!';
+                tooltip.style.display = 'block';
+                setTimeout(() => {
+                    tooltip.style.display = 'none';
+                    tooltip.textContent = 'Click logo to copy section link';
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html> 
