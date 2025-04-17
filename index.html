@@ -6,12 +6,49 @@
     <title>Referral Codes</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: none;
+            z-index: 1000;
+        }
+        .referral-card {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .referral-card.highlight {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border: 2px solid #4CAF50;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+            }
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>My Referral Codes</h1>
         <div class="referral-grid">
-            <div class="referral-card">
+            <div class="referral-card" id="gcr" data-url="https://lukelinxu.github.io/referral/#gcr">
+                <div class="tooltip">Long press to copy direct link</div>
                 <h2>Great Canadian Rebates</h2>
                 <div class="referral-content">
                     <a href="https://www.greatcanadianrebates.ca/register/160610/" target="_blank" class="referral-link">
@@ -26,7 +63,8 @@
                 </div>
             </div>
 
-            <div class="referral-card">
+            <div class="referral-card" id="rakuten" data-url="https://lukelinxu.github.io/referral/#rakuten">
+                <div class="tooltip">Long press to copy direct link</div>
                 <h2>Rakuten</h2>
                 <div class="referral-content">
                     <a href="https://www.rakuten.ca/r/lukelinxu?src=Link" target="_blank" class="referral-link">
@@ -41,7 +79,8 @@
                 </div>
             </div>
 
-            <div class="referral-card">
+            <div class="referral-card" id="wise" data-url="https://lukelinxu.github.io/referral/#wise">
+                <div class="tooltip">Long press to copy direct link</div>
                 <h2>Wise</h2>
                 <div class="referral-content">
                     <a href="https://wise.com/invite/ihpc/xul20" target="_blank" class="referral-link">
@@ -56,7 +95,8 @@
                 </div>
             </div>
 
-            <div class="referral-card">
+            <div class="referral-card" id="wealthsimple" data-url="https://lukelinxu.github.io/referral/#wealthsimple">
+                <div class="tooltip">Long press to copy direct link</div>
                 <h2>Wealthsimple</h2>
                 <div class="referral-content">
                     <a href="https://wealthsimple.com/invite/BJJOGG" target="_blank" class="referral-link">
@@ -71,7 +111,8 @@
                 </div>
             </div>
 
-            <div class="referral-card">
+            <div class="referral-card" id="ib" data-url="https://lukelinxu.github.io/referral/#ib">
+                <div class="tooltip">Long press to copy direct link</div>
                 <h2>Interactive Brokers</h2>
                 <div class="referral-content">
                     <a href="https://ibkr.com/referral/xu756" target="_blank" class="referral-link">
@@ -86,7 +127,8 @@
                 </div>
             </div>
 
-            <div class="referral-card">
+            <div class="referral-card" id="fizz" data-url="https://lukelinxu.github.io/referral/#fizz">
+                <div class="tooltip">Long press to copy direct link</div>
                 <h2>Fizz</h2>
                 <div class="referral-content">
                     <a href="https://fizz.ca" target="_blank" class="referral-link">
@@ -101,7 +143,8 @@
                 </div>
             </div>
 
-            <div class="referral-card">
+            <div class="referral-card" id="lyft" data-url="https://lukelinxu.github.io/referral/#lyft">
+                <div class="tooltip">Long press to copy direct link</div>
                 <h2>Lyft</h2>
                 <div class="referral-content">
                     <a href="https://www.lyft.com/i/LUKE809219?utm_medium=2pi_iacc" target="_blank" class="referral-link">
@@ -116,7 +159,8 @@
                 </div>
             </div>
 
-            <div class="referral-card">
+            <div class="referral-card" id="public-mobile" data-url="https://lukelinxu.github.io/referral/#public-mobile">
+                <div class="tooltip">Long press to copy direct link</div>
                 <h2>Public Mobile</h2>
                 <div class="referral-content">
                     <a href="https://publicmobile.ca/en/on/plans?referral=OKT6N8" target="_blank" class="referral-link">
@@ -134,5 +178,71 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle long press to copy URL
+            const cards = document.querySelectorAll('.referral-card');
+            let pressTimer;
+            const pressDuration = 500; // milliseconds
+
+            cards.forEach(card => {
+                const tooltip = card.querySelector('.tooltip');
+                
+                card.addEventListener('mousedown', function(e) {
+                    if (e.button === 2) { // Right click
+                        pressTimer = setTimeout(() => {
+                            const url = this.getAttribute('data-url');
+                            navigator.clipboard.writeText(url).then(() => {
+                                tooltip.textContent = 'Link copied!';
+                                tooltip.style.display = 'block';
+                                setTimeout(() => {
+                                    tooltip.style.display = 'none';
+                                    tooltip.textContent = 'Long press to copy direct link';
+                                }, 2000);
+                            });
+                        }, pressDuration);
+                    }
+                });
+
+                card.addEventListener('mouseup', function() {
+                    clearTimeout(pressTimer);
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    clearTimeout(pressTimer);
+                });
+
+                card.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                });
+            });
+
+            // Handle URL hash targeting
+            function highlightTargetCard() {
+                const hash = window.location.hash.substring(1);
+                if (hash) {
+                    const targetCard = document.getElementById(hash);
+                    if (targetCard) {
+                        // Remove highlight from all cards
+                        cards.forEach(card => card.classList.remove('highlight'));
+                        
+                        // Add highlight to target card
+                        targetCard.classList.add('highlight');
+                        
+                        // Remove highlight after 3 seconds
+                        setTimeout(() => {
+                            targetCard.classList.remove('highlight');
+                        }, 3000);
+                    }
+                }
+            }
+
+            // Check for hash on page load
+            highlightTargetCard();
+
+            // Check for hash changes
+            window.addEventListener('hashchange', highlightTargetCard);
+        });
+    </script>
 </body>
 </html> 
